@@ -1,20 +1,11 @@
 version: "3"
 services:
-  vendor-portal:
+  test-suites:
     image: luckymantala/selenium:latest  
     environment:
       - HUB_HOST=hub
-      - BROWSER=${BROWSER}
+      - BROWSER
       - THREAD_COUNT=3
-      - TEST_SUITE=vendor-portal.xml
+      - TEST_SUITE
     volumes:
-      - C:\Users\ATUser001\git\selenium-docker-cicd\output\vendor-portal:/home/selenium-docker-cicd/test-output
-  flight-reservation:
-    image: luckymantala/selenium:latest
-    environment:
-      - HUB_HOST=hub
-      - BROWSER=${BROWSER}
-      - THREAD_COUNT=4
-      - TEST_SUITE=flight-reservation.xml
-    volumes:
-      - C:\Users\ATUser001\git\selenium-docker-cicd\output\flight-reservation:/home/selenium-docker-cicd/test-output
+      - C:\Users\ATUser001\git\selenium-docker-cicd\output\$TEST_SUITE:/home/selenium-docker-cicd/test-output
