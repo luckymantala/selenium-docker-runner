@@ -20,7 +20,7 @@ pipeline{
             steps{
                 bat "docker-compose -f test-suites.yaml up --pull=always"
                 script {
-                    if(fileExists('output/flight-reservation.xml/testng-failed.xml') || fileExists('output/vendor-portal.xml/testng-failed.xml')){
+                    if(fileExists('test-output/testng-failed.xml')){
                         error('failed tests found')
                     }
                 }
@@ -33,8 +33,7 @@ pipeline{
         always {
             bat "docker-compose -f grid.yaml down"
             bat "docker-compose -f test-suites.yaml down"
-            archiveArtifacts artifacts: 'output/flight-reservation.xml/emailable-report.html', followSymlinks: false
-            archiveArtifacts artifacts: 'output/vendor-portal.xml/emailable-report.html', followSymlinks: false
+            archiveArtifacts artifacts: 'test-output/emailable-report.html', followSymlinks: false
         }
     }
 
