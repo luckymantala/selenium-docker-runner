@@ -5,7 +5,7 @@ services:
     environment:
       - HUB_HOST=hub
       - BROWSER
-      - THREAD_COUNT=3
+      - THREAD_COUNT=1
       - TEST_SUITE
     volumes:
       - .\output\$TEST_SUITE:/home/selenium-docker-cicd/test-output
